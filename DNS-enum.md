@@ -1,3 +1,7 @@
+# DNS Bruteforce  DNSRecon
+```
+dnsrecon -d TARGET -D /usr/share/wordlists/dnsmap.txt -t std --xml ouput.xml
+```
 # WHOIS enumeration
 ```
 whois domain-name-here.com 
