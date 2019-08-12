@@ -85,4 +85,4 @@ Metasploit handlers can be great at quickly setting up Metasploit to be in a pos
 4. set LPORT <LPORT value>
 5. set ExitOnSession false
 6. exploit -j -z
-> Once the required values are completed the following command will execute your handler – ‘msfconsole -L -r ‘
+ Once the required values are completed the following command will execute your handler – ‘msfconsole -L -r ‘
