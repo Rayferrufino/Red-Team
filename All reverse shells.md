@@ -1,6 +1,6 @@
 # Bash Reverse Shells
 
-```shell
+```bash
 exec /bin/bash 0&0 2>&0
 
 ```
