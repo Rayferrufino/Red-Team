@@ -1,5 +1,6 @@
 # WHOIS enumeration
-```whois domain-name-here.com 
+```
+whois domain-name-here.com 
 ```
 # Perform DNS IP Lookup
 dig a domain-name-here.com @nameserver 
