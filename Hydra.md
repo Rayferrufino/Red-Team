@@ -14,8 +14,10 @@ hydra -l/-L <user name / user list> -p/-P <password / password list> <protocol:/
 
 # Example
 ```sh
-hydra -l bob -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.15  # Cycle through a wordlist trying to log in as bob over ssh on 192.168.1.1
+hydra -l bob -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.15 
+# Cycle through a wordlist trying to log in as bob over ssh on 192.168.1.1
 ```
 ```sh
-hydra -L usernames.txt -p password  192.168.1.1 http-get / -s 80   # Cycle through a list of usernames and try and log into the router at http://192.168.1.1:80/ with the password 'password'
+hydra -L usernames.txt -p password  192.168.1.1 http-get / -s 80   
+# Cycle through a list of usernames and try and log into the router at http://192.168.1.1:80/ with the password 'password'
 ```
