@@ -20,8 +20,7 @@ while read line 0<&5; do $line 2>&5 >&5; done
 
 #
 
-```
-#!/bin/bash
+```#!/bin/bash
 
 ###### CONFIG
 ACCEPTED_HOSTS="/root/.hag_accepted.conf"
