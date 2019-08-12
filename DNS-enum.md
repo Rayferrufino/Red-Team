@@ -21,7 +21,7 @@ dig axfr domain-name-here.com @nameserver
 nslookup -> set type=any -> ls -d blah.com
 ```
 ## Linux DNS zone transfer
-
+```
 dig axfr blah.com @ns1.blah.com
-
+```
 
