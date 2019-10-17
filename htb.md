@@ -1,5 +1,5 @@
 1. Recon
-```
+```html
 PORT      STATE SERVICE      VERSION
 80/tcp    open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
 | http-methods: 
