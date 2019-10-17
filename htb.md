@@ -1,5 +1,5 @@
 1. Recon
-```html
+```shell
 PORT      STATE SERVICE      VERSION
 80/tcp    open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
 | http-methods: 
@@ -14,7 +14,9 @@ PORT      STATE SERVICE      VERSION
 2. Use Dirbuster find out the directories running on port 50000
 3. /askjeeves/ has a Jekins app running
 4. to get admin without authenticating:
+```shell
 http://10.10.10.63:50000/askjeeves/securityRealm/user/admin/
+```
 
 # Exploitation Method 1
 
