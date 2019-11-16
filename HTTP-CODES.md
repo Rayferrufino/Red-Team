@@ -1,4 +1,4 @@
-#200 (OK)
+# 200 (OK)
 It indicates that the REST API successfully carried out whatever action the client requested, and that no more specific code in the 2xx series is appropriate.
 Unlike the 204 status code, a 200 response should include a response body.The information returned with the response is dependent on the method used in the request, for example:
 GET an entity corresponding to the requested resource is sent in the response;
