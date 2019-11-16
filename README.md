@@ -7,13 +7,15 @@ Repo for all the Recon and enum techniques, Exploitation, Priv-escalation (Linux
 |[Linux Exploit suggester pl](Linux-exploit-suggester.pl)|
 |[LinuxEnum.sh](LinuxEnum.sh) |
 |[Linux Privechecker.py](LinuxPrivChecker.py)|
+|[NMAP AUTOMATOR](NmapAutomator.sh)
 
  | WINDOWS | 
- |----------
+ |----------|
  | [Windows Exploit suggester](Windows-exploit-suggester.py) |
  | [wget.vbs OSCP](Filedownload.vbs) |
  
- 
- [KALI web shells](https://github.com/Rayferrufino/Red-Team/tree/master/Kali%20web%20shells) 
- [MSFVENOM PAYLOADS](Msfvenom-PAYLOADS.md)
-  [Netcat Shell](Netcat-shells.md)|
+ | SHELLS |
+ |--------|
+ |[KALI web shells](https://github.com/Rayferrufino/Red-Team/tree/master/Kali%20web%20shells) |
+ |[MSFVENOM PAYLOADS](Msfvenom-PAYLOADS.md)|
+ |[Netcat Shell](Netcat-shells.md)|
