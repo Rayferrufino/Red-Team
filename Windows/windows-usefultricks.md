@@ -1,3 +1,13 @@
+# IIS CHART VERSION
+|VERSION | OS|
+|--------|---|
+| 5.1	|	Windows XP Professional
+| 6.0	|	Windows Server 2003
+| 7.0	| Windows Vista and WIndows Server 2008
+| 7.5	|	Windows 7 and Windows Server 2008 R2
+| 8.0	| Windows 8 and Windows Server 2012
+
+
 # Clear Text Passwords
 ```
 findstr /si password *.txt
