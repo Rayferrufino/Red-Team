@@ -1,4 +1,26 @@
+[AWK](#AWK)
+[BASH](#BASH)
+[ENV](#ENV)
+[FIND](#FIND)
+[FTP](#FTP)
+[LESS](#LESS)
+[MAN](#MAN)
+[MORE](#MORE)
+[NANO](#NANO)
+[NC](#NC)
 [NMAP](#NMAP)
+[PERL](#PERL)
+[PYTHON](#PYTHON)
+[RUN-PARTS](#RUN-PARTS)
+[TAR](#TART)
+[TIME](#TIME)
+[VI](#VI)
+[VIM](#VIM)
+[ZIP](#ZIP)
+
+
+
+
 
 # AWK
 ### SUDO
