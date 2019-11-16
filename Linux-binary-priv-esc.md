@@ -1,7 +1,3 @@
-# NMAP
-
-
-
 # AWK
 ### SUDO
 ```
