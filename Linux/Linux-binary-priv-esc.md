@@ -18,10 +18,6 @@
 [VIM](#VIM)
 [ZIP](#ZIP)
 
-
-
-
-
 # AWK
 ### SUDO
 ```
