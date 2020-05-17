@@ -1,7 +1,7 @@
 
 # Using Python for a psuedo terminal
 
-```
+```bash
 python -c 'import pty; pty.spawn("/bin/bash")'  
 
 ```
